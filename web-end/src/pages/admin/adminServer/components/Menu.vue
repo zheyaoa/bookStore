@@ -1,36 +1,34 @@
+
 <template>
     <div class="nav">
         <div class="menu">
-            <router-link to="./order">
+            <router-link to="./importBook">
                 <div class="menu-item">
                     <i class="iconfont">&#xe603;</i>
-                    我的订单
+                    书籍录入
                     <i class="iconfont join">&#xe605;</i>
                 </div>
             </router-link>
-            <router-link to="./shoppingCart">
+            <router-link to="./orderView">
                 <div class="menu-item">
                     <i class="iconfont ">&#xe602;</i>
-                    我的购物车
+                    查看订单
                     <i class="iconfont join">&#xe605;</i>
                 </div>
             </router-link>
             <router-link to="./address">
                 <div class="menu-item">
                     <i class="iconfont">&#xe602;</i>
-                    收货地址
+                    查看信息
                     <i class="iconfont join">&#xe605;</i>
                 </div>
             </router-link>
-        </div>
-        <div class="footer">
-            <el-button type="danger" class="quit">退出</el-button>
         </div>
     </div>
 </template>
 <script>
 export default {
-    name:'Nav'
+    name:'adminNav'
 }
 </script>
 <style lang="stylus" scoped>
@@ -46,11 +44,4 @@ export default {
             .join
                 position absolute
                 right .2rem
-        .footer
-            position absolute
-            width 100%
-            bottom 0
-            text-align center
-            .quit
-                width 100%
 </style>

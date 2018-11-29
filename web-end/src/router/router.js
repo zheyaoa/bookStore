@@ -5,6 +5,11 @@ import Personal from 'server/personal/Personal'
 import ShoppingCart from 'server/shoppingCart/ShoppingCart'
 import Order from 'server/order/Order'
 import Address from 'server/address/Address'
+
+import Admin from 'admin/adminServer/Admin'
+import ImportBook from 'admin/importBook/ImportBook'
+import OrderView from 'admin/orderView/OrderView'
+
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 Vue.use(Router)
@@ -40,6 +45,26 @@ export default new Router({
       path:'/order',
       name:'order',
       component:Order
-    }
+    },
+    {
+      path:'/address',
+      name:'address',
+      component:Address
+    },
+    {
+      path:'/admin',
+      name:'admin',
+      component:Admin
+    },
+    {
+      path:'/importBook',
+      name:'importBook',
+      component:ImportBook
+    },
+    {
+      path:'/orderView',
+      name:'orderView',
+      component:OrderView
+    },
   ]
 })
