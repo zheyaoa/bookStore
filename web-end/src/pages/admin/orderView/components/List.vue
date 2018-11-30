@@ -16,6 +16,9 @@
                     <span class="sum">
                         X{{item.sum}}
                     </span>
+                    <el-button type="primary" size="mini" class="submit">
+                        完成订单
+                    </el-button>
                 </div>
             </div>
         </div>
@@ -68,5 +71,11 @@ export default {
                 .footer
                     padding-top .2rem
                     .price
-                        color #f56c6c                      
+                        color #f56c6c    
+                    .sum
+                        color #6a737d
+                        font-size .24rem
+                        margin-left .1rem
+                    .submit
+                        float right             
 </style>

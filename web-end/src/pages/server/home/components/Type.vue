@@ -1,10 +1,8 @@
 <template>
     <div id="type">
-        <el-tag>电子书</el-tag>
-        <el-tag type="success">小说</el-tag>
-        <el-tag type="info">漫画</el-tag>
-        <el-tag type="warning">科技</el-tag>
-        <el-tag type="danger">童书</el-tag>
+        <el-tag type="success" v-for="item in typeList" :key="item.typeId" @click="handleTagClick(item.typeId)">
+            {{item.name}}
+        </el-tag>
     </div>
 </template>
 <script>
@@ -15,25 +13,30 @@ export default {
             typeList:[
                 {
                     name:'电子书',
+                    typeId:0
+                },
+                {
+                    name:'小说',
                     typeId:1
                 },
                 {
-                    name:'电子书',
+                    name:'漫画',
                     typeId:2
                 },
                 {
-                    name:'电子书',
+                    name:'科技',
                     typeId:3
                 },
                 {
-                    name:'电子书',
+                    name:'童书',
                     typeId:4
-                },
-                {
-                    name:'电子书',
-                    typeId:5
                 }
             ]
+        }
+    },
+    methods:{
+        handleTagClick(typeId){
+            
         }
     }
 }

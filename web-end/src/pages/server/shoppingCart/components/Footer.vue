@@ -1,9 +1,8 @@
 <template>
    <div class="footer">
-        <div class="checkBox">
-            <i class="el-icon-success check"></i>
+        <el-checkbox :label="checked" class="checkBox">
             <span class="message">全选</span>
-        </div>
+        </el-checkbox>
         <el-button type="danger" class="submit">
             结算
         </el-button>
@@ -18,6 +17,7 @@ export default {
     name:'CartFooter',
     data(){
         return{
+            checked:false,
             price:100
         }
     }

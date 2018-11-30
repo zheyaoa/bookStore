@@ -16,10 +16,10 @@
                     <i class="iconfont join">&#xe605;</i>
                 </div>
             </router-link>
-            <router-link to="./address">
+            <router-link to="./search">
                 <div class="menu-item">
                     <i class="iconfont">&#xe602;</i>
-                    查看信息
+                    信息查询
                     <i class="iconfont join">&#xe605;</i>
                 </div>
             </router-link>

@@ -9,6 +9,7 @@ import Address from 'server/address/Address'
 import Admin from 'admin/adminServer/Admin'
 import ImportBook from 'admin/importBook/ImportBook'
 import OrderView from 'admin/orderView/OrderView'
+import Search from 'admin/search/Search'
 
 import Login from '@/components/Login'
 import Register from '@/components/Register'
@@ -66,5 +67,10 @@ export default new Router({
       name:'orderView',
       component:OrderView
     },
+    {
+      path:'/search',
+      name:'search',
+      component:Search
+    }
   ]
 })
