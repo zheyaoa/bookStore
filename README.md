@@ -73,7 +73,7 @@
     ]
     ```
 
-* /register  
+* api/register  
 
   > 注册账号
 
@@ -96,7 +96,7 @@
   }
   ```
 
-* /login
+* api/login
 
   > 账号登陆
 
@@ -119,6 +119,67 @@
       cookie:{}
   }
   ```
+
+* api/shoppingCart
+
+  > 获取购物车
+
+  * web => server 
+
+  ```  
+  Cookies
+  ```
+
+  * server => web
+
+  ``` 
+  data:{
+      [
+          {
+              "cId":1,
+              "num":2,
+              "cName":"name",
+              "image":"url"
+          },
+          {
+              "cId":1,
+              "num":2,
+              "cName":"name",
+              "image":"url"
+          }
+      ]
+  }
+  ```
+
+* api/myOrders
+
+  > 获取我的订单
+
+  * web => server 
+
+  ```
+  Cookies
+  ```
+
+  * server => web
+
+  ```
+  data:[
+  	{
+      	"cId":1,
+      	"price":20.00,
+      	"cName":"name",
+      	"iamge":"url"
+  	},
+  	{
+      	"cId":1,
+      	"price":20.00,
+      	"cName":"name",
+      	"iamge":"url"
+  	}
+  ]
+  ```
+
 
 
 
@@ -187,7 +248,7 @@
     <tr>
         <th>typeId</th>
         <th>Integer</th>
-        <th>主键</th>
+        <th>外键</th>
         <th>商品类型</th>
     </tr>
     <tr>
@@ -215,6 +276,7 @@
         <th>图片地址</th>
     </tr>
 </table>
+
 
 * commodityType
 
