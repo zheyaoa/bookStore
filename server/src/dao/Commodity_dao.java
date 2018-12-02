@@ -1,12 +1,12 @@
 package dao;
 
-import beans.Book;
+import beans.Commodity_bean;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class Commodity {
-    public Commodity() throws  Exception{
+public class Commodity_dao {
+    public Commodity_dao() throws  Exception{
         try{
 
             Class.forName("com.mysql.jdbc.Driver");
@@ -18,7 +18,7 @@ public class Commodity {
         }
     }
     private Connection conn =  null;
-    private ArrayList<Book> bookList = new ArrayList();
+    private ArrayList<Commodity_bean> commoditybeanList = new ArrayList();
     PreparedStatement ps = null;
 
     public ArrayList getBookListByTypeId(Integer typeId) throws Exception{
@@ -28,14 +28,14 @@ public class Commodity {
             ps.setInt(1,typeId);
             ResultSet rs =  ps.executeQuery(sql);
             while (rs.next()){
-                 Book book = new Book();
-                 book.setcId(rs.getInt("cId"));
-                 book.setTypeId(rs.getInt("typeId"));
-                 book.setPrice(rs.getFloat("price"));
-                 book.setcName(rs.getString("cName"));
-                 book.setDes(rs.getString("des"));
-                 book.setImage(rs.getString("image"));
-                 bookList.add(book);
+                 Commodity_bean commoditybean = new Commodity_bean();
+                 commoditybean.setcId(rs.getInt("cId"));
+                 commoditybean.setTypeId(rs.getInt("typeId"));
+                 commoditybean.setPrice(rs.getFloat("price"));
+                 commoditybean.setcName(rs.getString("cName"));
+                 commoditybean.setDes(rs.getString("des"));
+                 commoditybean.setImage(rs.getString("image"));
+                 commoditybeanList.add(commoditybean);
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -43,18 +43,17 @@ public class Commodity {
             conn.close();
             conn = null;
         }
-        return bookList;
+        return commoditybeanList;
     }
-    public void addBook(Book book) throws Exception{
+    public void addBook(Commodity_bean commoditybean) throws Exception{
         try {
-            String sql = "insert into commodity values(?,?,?,?,?,?)";
+            String sql = "insert into commodity(typeId,cName,price,des,image) values(?,?,?,?,?)";
             ps = conn.prepareStatement(sql);
-            ps.setInt(1,book.getcId());
-            ps.setInt(2,book.getTypeId());
-            ps.setFloat(3,book.getPrice());
-            ps.setString(4,book.getcName());
-            ps.setString(5,book.getDes());
-            ps.setString(6,book.getImage());
+            ps.setInt(1, commoditybean.getTypeId());
+            ps.setString(2, commoditybean.getcName());
+            ps.setFloat(3, commoditybean.getPrice());
+            ps.setString(4, commoditybean.getDes());
+            ps.setString(5, commoditybean.getImage());
             ps.executeUpdate(sql);
         }catch (SQLException e){
             e.printStackTrace();

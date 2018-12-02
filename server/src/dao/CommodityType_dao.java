@@ -1,14 +1,14 @@
 package dao;
 
-import beans.Type;
+import beans.CommodityType_bean;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class CommodityType {
+public class CommodityType_dao {
     public ArrayList getTypeList() throws Exception{
         Connection conn =  null;
-        ArrayList<Type> typeList = new ArrayList();
+        ArrayList<CommodityType_bean> commodityTypeBeanList = new ArrayList();
         try {
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/shopping?"
@@ -20,7 +20,7 @@ public class CommodityType {
             while (rs.next()){
                 Integer typeId = rs.getInt("typeId");
                 String typeName = rs.getString("typeName");
-                typeList.add(new Type(typeId,typeName));
+                commodityTypeBeanList.add(new CommodityType_bean(typeId,typeName));
             }
             rs.close();
             stat.close();
@@ -30,6 +30,6 @@ public class CommodityType {
             conn.close();
             conn = null;
         }
-        return typeList;
+        return commodityTypeBeanList;
     }
 }

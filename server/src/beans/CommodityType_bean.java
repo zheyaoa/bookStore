@@ -1,9 +1,9 @@
 package beans;
 
-public class Type {
+public class CommodityType_bean {
     private Integer typeId;
     private String typeName;
-    public Type(Integer typeId, String typeName) {
+    public CommodityType_bean(Integer typeId, String typeName) {
         this.typeId = typeId;
         this.typeName = typeName;
     }

@@ -1,6 +1,6 @@
 package beans;
 
-public class Book {
+public class Commodity_bean {
     Integer cId;
     Integer typeId;
     String cName;

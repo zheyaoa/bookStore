@@ -1,6 +1,6 @@
 package beans;
 
-public class Order {
+public class Order_bean {
     private Integer oId;
     private Integer uId;
     private Integer cId;
