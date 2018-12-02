@@ -4,6 +4,8 @@
 
 ### 前端页面项目 ###
 
+> /web-end 目录
+
 #### 环境依赖
 
 ​	node v8.12.0
@@ -18,30 +20,57 @@
 
 #### 项目结构
 
-​	| -- dist    //生成打包后的文件
-
-​	| -- node_modules    //安装的依赖包
-
-​	| -- src
-
-​	|   |-- public 			//静态文件，会打包到dist的对应目录下
-
-​	|   |-- assets 			//放置一些静态资源，例如图片图标，字体等
-​	|   |-- components  	//一些公共组件
-
-​	|   |--router           	//vue-router相关配置 
-
-​	|   |--store 			//vuex 相关配置
-
-​	|   |--pages 			//vue-router下的页面
+> node_modules    //安装的依赖包
+>
+> src
+>
+> > assets	//放置一些静态资源，例如图片图标，字体等
+> >
+> > components  //一些公共组件
+> >
+> > router  //vue-router相关配置 
+> >
+> > store    //vuex 相关配置
+> >
+> > pages   //vue-router下的页面
+>
+> public  公共页面模板
+>
+> .gitignore
+>
+> babel.config.js
+>
+> package.json
+>
+> package.lock.json
+>
+> README.md
+>
+> vue.config.js
 
 ### 后端页面项目
 
-
+>  .idea //idea相关项目配置
+>
+> src
+>
+> > beans 逻辑层
+> >
+> > servlets 控制层
+> >
+> > dao 数据层
+>
+> web
+>
+> > WEN-INF
+> >
+> > > web.xml 
+> >
+> > dist  //相关文件
 
 ### 接口文档
 
-* /getListByBookType
+* api/getListByBookType
 
   > 根据书籍类型 返回书籍列表
 
@@ -88,7 +117,7 @@
 
   * server => web
 
-  > 返回状态  status:0|1  0表示成功，1表示成功
+  > 返回状态  status:0|1  0表示不成功，1表示成功
 
   ```
   data:{
@@ -187,8 +216,6 @@
 
 数据库名称 ：
 
-
-
 * User 表
 
 >
@@ -259,7 +286,7 @@
     </tr>
     <tr>
         <th>price</th>
-        <th>Integer</th>
+        <th>Float</th>
         <th>不可空</th>
         <th>商品价格</th>
     </tr>
@@ -276,6 +303,7 @@
         <th>图片地址</th>
     </tr>
 </table>
+
 
 
 * commodityType
@@ -342,12 +370,69 @@
         <th>status</th>
         <th>Integer</th>
         <th>不可空</th>
-        <th>订单是否完成</th>
+        <th>订单是否完成 0未完成/1完成</th>
     </tr>
     <tr>
     	<th>price</th>
-        <th>Integer</th>
+        <th>Float</th>
         <th>不可空</th>
         <th>价格(合计)</th>
     </tr>
 </table>
+
+* shoppingCart
+
+> 购物车 table
+
+<table>
+    <tr>
+        <th>属性列</th>
+        <th>数据类型</th>
+        <th>约束条件</th>
+        <th>desc</th>
+    </tr>
+    <tr>
+        <th>uId</th>
+        <th>Integer</th>
+        <th>外键</th>
+        <th>用户id</th>
+    </tr>
+    <tr>
+        <th>cId</th>
+        <th>Integer</th>
+        <th>外键</th>
+        <th>商品id</th>
+    </tr>
+    <tr>
+        <th>num</th>
+        <th>Integer</th>
+        <th>不可空</th>
+        <th>购买数量</th>
+    </tr>
+    <tr>
+    	<th>price</th>
+        <th>Float</th>
+        <th>不可空</th>
+        <th>价格(合计)</th>
+    </tr>
+</table>
+
+### 数据库api文档
+
+* dao/commodityType
+
+  * getTypeList   ： ***获取所有书籍类型***
+
+* dao/commodity
+
+  * getBookListByTypeId : ***根据书籍Id获取书籍列表***
+  * addBook  ***添加书籍***
+
+* dao/Orders
+
+  * getOrderListByUid  ***根据用户id获取订单列表***
+  * getOrderListByStatus  ***根据status获取订单列表***
+
+  * completeOrder  ***完成订单***
+
+* 
