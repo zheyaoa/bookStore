@@ -20,7 +20,10 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      meta: {
+        keepAlive: true // true 表示需要使用缓存 false表示不需要被缓存
+      }
     },
     {
       path:'/personal',

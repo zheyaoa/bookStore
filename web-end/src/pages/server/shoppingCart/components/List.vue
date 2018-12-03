@@ -12,7 +12,10 @@
                         ¥{{item.price}}
                     </span>
                 </div>
-                <el-input-number v-model="item.num" size="medium" :min="1" :max="10" label="描述文字" @change="handleNumChange"></el-input-number>
+                <div class="action">
+                    <el-input-number v-model="item.num" size="medium" :min="1" :max="10" label="描述文字" @change="handleNumChange"></el-input-number>
+                    <el-button type="danger" size="mini" class="delete" @click="handleDelete(item.cId)">删除</el-button>
+                </div>
             </div>
         </div>
         <div class="footer">
@@ -44,6 +47,9 @@ export default {
     },
     mounted(){
         this.list = this.$store.state.list;
+    },
+    destroyed(){
+        this.$store.commit("uploadList",this.list);
     },
     watch:{
 
@@ -77,6 +83,14 @@ export default {
                 this.allChecked()
                 this.getPrice()
             }
+        },
+        handleDelete(id){
+            for(var i = 0;i<this.list.length;i++){
+                if(this.list[i].cId == id){
+                    this.list.splice(i,1)
+                }
+            }
+            this.getPrice()
         },
         allChecked(){
             this.list.forEach(item => {
@@ -138,6 +152,10 @@ export default {
                         float right
                         display inline-block
                         margin-right .2rem
+                .action
+                    display flex
+                    .delete
+                        margin-left .1rem
         .footer
             position fixed
             height .8rem

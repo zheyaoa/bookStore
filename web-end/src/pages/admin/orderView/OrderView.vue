@@ -15,6 +15,11 @@ export default {
         ViewHeader,
         ViewList,
         ViewTab
+    },
+    data(){
+        return{
+
+        }
     }
 }
 </script>

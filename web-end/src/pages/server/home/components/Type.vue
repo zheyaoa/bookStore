@@ -1,6 +1,6 @@
 <template>
     <div id="type">
-        <el-tag type="success" v-for="item in typeList" :key="item.typeId" @click="handleTagClick(item.typeId)">
+        <el-tag type="success" v-for="item in typeList" :key="item.typeId" @click.native="handleTagClick(item.typeId)">
             {{item.name}}
         </el-tag>
     </div>
@@ -36,7 +36,7 @@ export default {
     },
     methods:{
         handleTagClick(typeId){
-            
+            this.$emit('handleTagClick',typeId);
         }
     }
 }

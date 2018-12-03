@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <order-header></order-header>
-        <order-list></order-list>
+        <order-list :list=list></order-list>
     </div>
 </template>
 <script>
@@ -12,6 +12,17 @@ export default {
     components:{
         OrderHeader,
         OrderList
+    },
+    data(){
+        return{
+            list:[]
+        }
+    },
+    mounted(){
+        this.axios.post('https://www.easy-mock.com/mock/5c03b2ae125d962d127404d1/getOrders')
+        .then(rs => {
+            this.list = rs.data.list
+        })
     }
 }
 </script>

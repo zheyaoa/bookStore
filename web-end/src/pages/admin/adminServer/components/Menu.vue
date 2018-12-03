@@ -11,14 +11,14 @@
             </router-link>
             <router-link to="./orderView">
                 <div class="menu-item">
-                    <i class="iconfont ">&#xe602;</i>
+                    <i class="iconfont ">&#xe603;</i>
                     查看订单
                     <i class="iconfont join">&#xe605;</i>
                 </div>
             </router-link>
             <router-link to="./search">
                 <div class="menu-item">
-                    <i class="iconfont">&#xe602;</i>
+                    <i class="iconfont">&#xe612;</i>
                     信息查询
                     <i class="iconfont join">&#xe605;</i>
                 </div>

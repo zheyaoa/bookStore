@@ -7,7 +7,9 @@ import '@/assets/iconfont/iconfont.css'
 import App from './App.vue'
 import router from './router/router.js'
 import store from './store/store.js'
+import axios from 'axios';
 Vue.use(ElementUI);
+Vue.prototype.axios = axios;
 
 Vue.config.productionTip = false
 

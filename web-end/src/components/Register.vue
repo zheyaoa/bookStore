@@ -5,15 +5,15 @@
             注册
         </el-header>
         <el-main>
-            <el-form>
+            <el-form v-model="registerForm">
                 <el-form-item label="账号">
-                    <el-input placeholder="请输入账号/学号"></el-input>
+                    <el-input placeholder="请输入账号/学号" v-model="registerForm.username"></el-input>
                 </el-form-item>
                 <el-form-item label="密码">
-                    <el-input placeholder="请输入密码" ></el-input>
+                    <el-input placeholder="请输入密码" type="password" v-model="registerForm.password"></el-input>
                 </el-form-item>
                 <el-item>
-                    <el-button class="register">
+                    <el-button class="register" @click="handleRegister">
                         注册
                     </el-button>
                 </el-item>
@@ -26,12 +26,34 @@ export default {
     name:'Register',
     data(){
         return {
+            registerForm:{
+                username:'',
+                password:''
+            }
         }
     },
     methods:{
         handleBack(){
             this.$router.go(-2)
-        }  
+        },
+        handleRegister(){
+            let data = JSON.stringify(this.registerForm)
+            this.axios.post('api/register',data)
+            .then(rs => {
+                if(rs.status == 1){
+                    this.$message({
+                        message:"注册成功",
+                        type:"success"
+                    })
+                    this.$router.push('./login')
+                }else{
+                    this.$message({
+                        message:"你已经注册",
+                        type:"warning"
+                    })
+                }
+            })
+        }
     }
 }
 </script>

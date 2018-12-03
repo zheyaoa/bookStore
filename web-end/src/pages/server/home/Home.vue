@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <server-head></server-head>
-        <book-type></book-type>
-        <book-list></book-list>
+        <book-type @handleTagClick=getCommodityListByTypeId></book-type>
+        <book-list :list=list></book-list>
         <server-footer></server-footer>
     </div>
 </template>
@@ -18,6 +18,39 @@ export default {
         BookType,
         BookList,
         ServerFooter
+    },
+    data(){
+        return{
+            list:[
+            ]
+        }
+    },
+    mounted(){
+        this.axios.post('https://www.easy-mock.com/mock/5c03b2ae125d962d127404d1/getCommodityListByTypeId',{"typeId":0})
+        .then(rs => {
+            this.list = rs.data.list
+        })
+        this.axios.post('https://www.easy-mock.com/mock/5c03b2ae125d962d127404d1/getShoppingCart')
+        .then(rs => {
+            console.log(rs.data.list)
+            let list = [];
+            rs.data.list.forEach(item => {
+                item.num = 1;
+                item.checked = false;
+                list.push(item);
+            })
+            this.$store.state.list = list;
+        })
+    },
+    methods:{
+        getCommodityListByTypeId(typeId){
+            let data = {typeId};
+            data = JSON.stringify(data);
+            this.axios.post('https://www.easy-mock.com/mock/5c03b2ae125d962d127404d1/getCommodityListByTypeId',data)
+            .then(rs => {
+                this.list = rs.data.list
+            })
+        }
     }
 }
 </script>

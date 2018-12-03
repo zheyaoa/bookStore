@@ -8,18 +8,18 @@
             </router-link>
         </el-header>
         <el-main>
-            <el-form>
+            <el-form v-model="loginForm">
                 <el-form-item label="活动名称">
-                    <el-input placeholder="请输入账号/学号"></el-input>
+                    <el-input placeholder="请输入手机号" v-model="loginForm.username"></el-input>
                 </el-form-item>
                 <el-form-item label="密码">
-                    <el-input placeholder="请输入密码" ></el-input>
+                    <el-input placeholder="请输入密码" type="password" v-model="login.password"></el-input>
                 </el-form-item>
-                <el-item>
-                    <el-button class="login">
+                <el-form-item>
+                    <el-button class="login" @click="handleLogin">
                         登入
                     </el-button>
-                </el-item>
+                </el-form-item>
             </el-form>
         </el-main>
     </el-container>
@@ -29,12 +29,27 @@ export default {
     name:'Login',
     data(){
         return {
+            loginForm:{
+                username:'',
+                password:''
+            }
         }
     },
     methods:{
         handleBack(){
             this.$router.go(-1)
-        }  
+        },
+        handleLogin(){
+            let data = JSON.stringify(this.loginForm);
+            this.axios.post('https://www.easy-mock.com/mock/5c03b2ae125d962d127404d1/login',data)
+            .then(rs => {
+                this.$message({
+                    "type":"success",
+                    "message":'登入成功'
+                })
+                this.$router.push('./')
+            })
+        }
     }
 }
 </script>
@@ -46,6 +61,7 @@ export default {
           height .9rem
           line-height .9rem
           font-size .32rem 
+          background #fff
       .container
           background #ebeced
           height 100%

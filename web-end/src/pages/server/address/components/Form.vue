@@ -1,10 +1,10 @@
 <template>
     <div class="content">
-        <el-form>
+        <el-form v-model="addressForm">
             <el-form-item label="收货地址">
-                <el-input></el-input>
+                <el-input v-model="addressForm.address"></el-input>
             </el-form-item>
-            <el-button type="primary" class="submit">
+            <el-button type="primary" class="submit" @click="changeAddress">
                 修改
             </el-button>
         </el-form>
@@ -12,7 +12,29 @@
 </template>
 <script>
 export default {
-    name:'AddressForm'    
+    name:'AddressForm',
+    data(){
+        return{
+            addressForm:{
+                address:''
+            }
+        }
+    },
+    methods:{
+        getAddress(){
+            
+        },
+        changeAddress(){
+            let data = JSON.stringify(this.addressForm);
+            this.axios.post('api/changeAddress',data)
+            .then(rs =>{
+                this.$message({
+                    type:success,
+                    title:修改成功
+                })
+            })
+        }
+    }
 }
 </script>
 <style lang="stylus" scoped>
