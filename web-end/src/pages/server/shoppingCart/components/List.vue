@@ -24,7 +24,7 @@
                     全选
                 </span>
             </el-checkbox>
-            <el-button type="danger" class="submit" @click="submit">
+            <el-button type="danger" class="submit" @click="account">
                 结算
             </el-button>
             <div class="price">
@@ -36,32 +36,44 @@
 <script>
 export default {
     name:'CartList',
+    props:{
+        list:Array
+    },
     data(){
         return{
-            list:[
-
-            ],
             price:0,
             checked:false
         }
     },
-    mounted(){
-        this.list = this.$store.state.list;
-    },
-    destroyed(){
-        this.$store.commit("uploadList",this.list);
-    },
-    watch:{
 
-    },
     computed:{
         allPrice(){
             return '合计：¥' + this.price
         }
     },
     methods:{
-        submit(){
-            
+        //提交订单
+        account(){
+            this.handleCheckList()
+            this.$emit('account')
+        },
+        //处理选中的货物
+        handleCheckList(){
+            let checkList = [];
+            let list = []
+            for(var i=0;i<this.list.length;i++){
+                if(this.list[i].checked){
+                    checkList.push(this.list[i])
+                }
+            }
+            this.axios.post('api/addOrders',checkList)
+            .then(rs => {
+                this.$message({
+                    'type':success,
+                    'message':'提交成功'
+                })
+                this.$emit('update')
+            })
         },
         getPrice(){
             let sum = 0;

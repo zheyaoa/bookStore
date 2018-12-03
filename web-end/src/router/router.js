@@ -43,7 +43,10 @@ export default new Router({
     {
       path:'/shoppingCart',
       name:'shoppingCart',
-      component:ShoppingCart
+      component:ShoppingCart,      
+      meta: {
+        keepAlive: false // true 表示需要使用缓存 false表示不需要被缓存
+      }
     },
     {
       path:'/order',

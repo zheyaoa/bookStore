@@ -11,7 +11,7 @@
                     <span class="price">
                         ¥{{item.price}}
                     </span>
-                    <i class="iconfont add" @click="addShoppingCart(item)">&#xe606;</i>
+                    <i class="iconfont add" @click="addShoppingCart(item.cId)">&#xe606;</i>
                 </div>
             </div>
         </div>
@@ -27,9 +27,10 @@ export default {
         }
     },
     methods:{
-        addShoppingCart(item){
-            this.$store.commit("addList",item)
-            this.$message({
+        addShoppingCart(cId){
+        let data = JSON.stringify({cId});
+        this.axios.post('api/addShoppingCart',data);
+        this.$message({
                 message: '添加成功',
                 type: 'success'
             });

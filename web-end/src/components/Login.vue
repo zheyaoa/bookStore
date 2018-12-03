@@ -13,7 +13,7 @@
                     <el-input placeholder="请输入手机号" v-model="loginForm.username"></el-input>
                 </el-form-item>
                 <el-form-item label="密码">
-                    <el-input placeholder="请输入密码" type="password" v-model="login.password"></el-input>
+                    <el-input placeholder="请输入密码" type="password" v-model="loginForm.password"></el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-button class="login" @click="handleLogin">

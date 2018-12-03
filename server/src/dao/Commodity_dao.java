@@ -18,7 +18,7 @@ public class Commodity_dao {
         }
     }
     private Connection conn =  null;
-    private ArrayList<Commodity_bean> commoditybeanList = new ArrayList();
+    private ArrayList<Commodity_bean> commodityList = new ArrayList();
     PreparedStatement ps = null;
 
     public ArrayList getBookListByTypeId(Integer typeId) throws Exception{
@@ -35,15 +35,17 @@ public class Commodity_dao {
                  commoditybean.setcName(rs.getString("cName"));
                  commoditybean.setDes(rs.getString("des"));
                  commoditybean.setImage(rs.getString("image"));
-                 commoditybeanList.add(commoditybean);
+                 commodityList.add(commoditybean);
             }
+            rs.close();
+            ps.close();
         }catch (SQLException e){
             e.printStackTrace();
         }finally {
             conn.close();
             conn = null;
         }
-        return commoditybeanList;
+        return commodityList;
     }
     public void addBook(Commodity_bean commoditybean) throws Exception{
         try {
@@ -55,6 +57,7 @@ public class Commodity_dao {
             ps.setString(4, commoditybean.getDes());
             ps.setString(5, commoditybean.getImage());
             ps.executeUpdate(sql);
+            ps.close();
         }catch (SQLException e){
             e.printStackTrace();
         }finally {

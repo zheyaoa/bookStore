@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class CommodityType_dao {
     public ArrayList getTypeList() throws Exception{
         Connection conn =  null;
-        ArrayList<CommodityType_bean> commodityTypeBeanList = new ArrayList();
+        ArrayList<CommodityType_bean> commodityTypeList = new ArrayList();
         try {
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/shopping?"
@@ -20,7 +20,7 @@ public class CommodityType_dao {
             while (rs.next()){
                 Integer typeId = rs.getInt("typeId");
                 String typeName = rs.getString("typeName");
-                commodityTypeBeanList.add(new CommodityType_bean(typeId,typeName));
+                commodityTypeList.add(new CommodityType_bean(typeId,typeName));
             }
             rs.close();
             stat.close();
@@ -30,6 +30,6 @@ public class CommodityType_dao {
             conn.close();
             conn = null;
         }
-        return commodityTypeBeanList;
+        return commodityTypeList;
     }
 }

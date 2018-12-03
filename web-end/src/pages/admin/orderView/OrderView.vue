@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <view-header></view-header>
-        <view-list></view-list>
-        <view-tab></view-tab>
+        <view-list :list=list></view-list>
+        <view-tab @tabClick=getOrderList></view-tab>
     </div>
 </template>
 <script>
@@ -18,7 +18,18 @@ export default {
     },
     data(){
         return{
-
+            list:[]
+        }
+    },
+    mounted(){
+        this.getOrderList(2)
+    },
+    methods:{
+        getOrderList(status){
+            this.axios.post('https://www.easy-mock.com/mock/5c03b2ae125d962d127404d1/getAllOrderList',data)
+            .then(rs => {
+                this.list = rs.data.list;
+            })
         }
     }
 }

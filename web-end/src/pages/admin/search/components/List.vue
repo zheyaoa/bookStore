@@ -1,7 +1,7 @@
 <template>
     <div class="List">
         <el-table :data="list" style="width: 100%" :border="true">
-            <el-table-column prop="uId" label="日期" width="80"></el-table-column>
+            <el-table-column prop="uId" label="id" width="80"></el-table-column>
             <el-table-column prop="username" label="姓名" width="120"></el-table-column>
             <el-table-column prop="address" label="地址"> </el-table-column>
     </el-table>

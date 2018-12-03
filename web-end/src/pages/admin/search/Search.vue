@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <search-header></search-header>
-        <search-list></search-list>
+        <search-list :list=list></search-list>
     </div>
 </template>
 <script>
@@ -12,6 +12,18 @@ export default {
     components:{
         SearchHeader,
         SearchList
+    },
+    data(){
+        return{
+            list:[
+            ]
+        }
+    },
+    mounted(){
+        this.axios.post('https://www.easy-mock.com/mock/5c03b2ae125d962d127404d1/getUserMessage')
+        .then(rs => {
+            this.list = rs.data.list
+        })
     }
 }
 </script>

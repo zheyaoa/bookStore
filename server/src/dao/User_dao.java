@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class User_dao {
     private Connection conn =  null;
-     PreparedStatement ps = null;
+    PreparedStatement ps = null;
 
     public User_dao() throws Exception{
         try{

@@ -70,7 +70,7 @@
 
 ### 接口文档
 
-* api/getListByBookType
+* api/ getCommodityListByTypeId
 
   > 根据书籍类型 返回书籍列表
 
@@ -110,7 +110,7 @@
 
   ``` 
   data:{
-      "userId":6130116240,
+      "username":6130116240,
       "password":123456
   }
   ```
@@ -133,7 +133,7 @@
 
   ```
   data:{
-  	"userId":6130116240,
+  	"username":6130116240,
       "password":123456
   }
   ```
@@ -149,7 +149,7 @@
   }
   ```
 
-* api/shoppingCart
+* api/getShoppingCart
 
   > 获取购物车
 
@@ -167,12 +167,14 @@
           {
               "cId":1,
               "num":2,
+              price:20
               "cName":"name",
               "image":"url"
           },
           {
-              "cId":1,
+              "cId":2,
               "num":2,
+              price:30,
               "cName":"name",
               "image":"url"
           }
@@ -180,7 +182,7 @@
   }
   ```
 
-* api/myOrders
+* api/getOrders
 
   > 获取我的订单
 
@@ -194,21 +196,56 @@
 
   ```
   data:[
-  	{
+  	{	
+  		"oId":1,
       	"cId":1,
       	"price":20.00,
+      	"num":2,
       	"cName":"name",
       	"iamge":"url"
   	},
   	{
-      	"cId":1,
+  		"oId":2,
+      	"cId":2,
       	"price":20.00,
+      	"num":2,
       	"cName":"name",
       	"iamge":"url"
   	}
   ]
   ```
 
+* api/getAddress
+
+  > 获取地址
+
+  * server => web 
+
+  ```
+  data:{
+      "address":"江西赣州"
+  }
+  ```
+
+* api/changeAddress
+
+  > 修改地址
+
+  * web => server 
+
+  ```
+  data:{
+      address:"asd"
+  }
+  ```
+
+  * server => web   0修改失败｜１xiuga
+
+  ```
+  data:{
+      status:0|1
+  }
+  ```
 
 
 
@@ -419,20 +456,25 @@
 
 ### 数据库api文档
 
-* dao/commodityType
+* commodityType_dao
 
   * getTypeList   ： ***获取所有书籍类型***
-
-* dao/commodity
+* commodity_dao
 
   * getBookListByTypeId : ***根据书籍Id获取书籍列表***
   * addBook  ***添加书籍***
-
-* dao/Orders
+* dao/Orders_dao
 
   * getOrderListByUid  ***根据用户id获取订单列表***
   * getOrderListByStatus  ***根据status获取订单列表***
+  * completeOrderbyId  ***完成对应的id订单***
+  * addOrders  ***添加订单***
+* User_dao
+  * addUser ***添加用户***
+  * changeAddress *** 修改用户收货嫡地址***
+  * getAddress   ***获取用户收货地址***
+  * getUserList ***获取用户列表***
 
-  * completeOrder  ***完成订单***
-
-* 
+* ShoppingCart
+  * getCartListByUId  ***根据用户id获取购物车列表***
+  * addCartList   保存购物车

@@ -1,30 +1,44 @@
 <template>
     <div id="footer">
         <el-menu class="menu" mode="horizontal">
-            <div class="router">
-                <el-menu-item index="1">
-                    <i class="iconfont">&#xe600;</i>
-                    <div class="name">所有订单</div>
+            <div class="router"  v-for="item in items" :key="item.index" @click="getOrderList(item.index)">
+                <el-menu-item :index="String(item.index)">
+                    <i class="iconfont" v-html="item.icon"></i>
+                    <div class="name">{{item.message}}</div>
                 </el-menu-item> 
-            </div>
-            <div  class="router">
-                <el-menu-item index="2">
-                    <i class="iconfont">&#xe602;</i>
-                    <div class="name">已完成</div>
-                </el-menu-item>
-            </div >
-            <div  class="router">
-                <el-menu-item index="3">
-                    <i class="iconfont">&#xe604;</i>
-                    <div class="name">未完成</div>
-                </el-menu-item>
             </div>
         </el-menu>
     </div>
 </template>
 <script>
 export default {
-    name:'footer'
+    name:'footer',
+    data(){
+        return{
+            items:[
+                {
+                    icon:'&#xe600;',
+                    message:'所有订单',
+                    index:1
+                },
+                {
+                    icon:'&#xe600;',
+                    message:'已完成',
+                    index:2
+                },
+                {
+                    icon:'&#xe600;',
+                    message:'未完成',
+                    index:3
+                },
+            ]
+        }
+    },
+    methods:{
+        getOrderList(id){
+            this.$emit('tabClick',id);
+        }
+    }
 }
 </script>
 <style lang="stylus" scoped>

@@ -28,6 +28,8 @@ public class Orders_dao {
             ps.setInt(1,uId);
             ResultSet rs =  ps.executeQuery(sql);
             HandleResultSet(rs);
+            rs.close();
+            ps.close();
         }catch (SQLException e){
             e.printStackTrace();
         }finally {
@@ -49,6 +51,8 @@ public class Orders_dao {
                 ps.setInt(1,statusCode);
                 ResultSet rs = ps.executeQuery(sql);
                 HandleResultSet(rs);
+                rs.close();
+                ps.close();
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -84,6 +88,7 @@ public class Orders_dao {
             }
             Statement stat = conn.createStatement();
             stat.executeUpdate(sql);
+            stat.close();
         }catch (SQLException e){
             e.printStackTrace();
         }finally {
@@ -109,6 +114,7 @@ public class Orders_dao {
             ps = conn.prepareStatement(sql);
             ps.setInt(1,oId);
             ps.executeUpdate(sql);
+            ps.close();
         }catch (SQLException e){
             e.printStackTrace();
         }finally {
