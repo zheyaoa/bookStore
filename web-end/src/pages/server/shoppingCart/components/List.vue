@@ -59,13 +59,16 @@ export default {
         },
         //处理选中的货物
         handleCheckList(){
-            let checkList = [];
-            let list = []
+            let checkList = [];　//选中的货物　
+            let list = []; //未选中的货物
             for(var i=0;i<this.list.length;i++){
                 if(this.list[i].checked){
                     checkList.push(this.list[i])
+                }else{
+                    list.push(this.list[i]);
                 }
             }
+            this.$emit('updateList',list);
             this.axios.post('api/addOrders',checkList)
             .then(rs => {
                 this.$message({

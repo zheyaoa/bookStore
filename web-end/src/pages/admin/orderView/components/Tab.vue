@@ -36,6 +36,7 @@ export default {
     },
     methods:{
         getOrderList(id){
+            console.log(id)
             this.$emit('tabClick',id);
         }
     }

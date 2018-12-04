@@ -48,204 +48,310 @@
 >
 > vue.config.js
 
+---
+
 ### 后端页面项目
 
 >  .idea //idea相关项目配置
 >
-> src
+>  src
 >
-> > beans 逻辑层
-> >
-> > servlets 控制层
-> >
-> > dao 数据层
+>  > beans 逻辑层
+>  >
+>  > servlets 控制层
+>  >
+>  > dao 数据层
 >
-> web
+>  web
 >
-> > WEN-INF
-> >
-> > > web.xml 
-> >
-> > dist  //相关文件
+>  > WEN-INF
+>  >
+>  > > web.xml 
+>  >
+>  > dist  //相关文件
+>  >
+>  >
+
+---
 
 ### 接口文档
 
-* api/ getCommodityListByTypeId
+> User 相关操作
+>
+> > * api/register  注册账号
+> >
+> >   * web =>server
+> >
+> >   ```
+> >   data:{
+> >       "username":6130116240,
+> >       "password":123456
+> >   }
+> >   ```
+> >
+> >   * server => web
+> >
+> >   ```
+> >   data:{
+> >       status:0|1 0成功，１失败
+> >   }
+> >   ```
+> >
+> > * api/login
+> >
+> >   * web=>server
+> >
+> >   ```
+> >   data:{
+> >       "username":6130116240,
+> >       "password":123456
+> >   }
+> >   ```
+> >
+> >   * server => web
+> >
+> >   ```
+> >   data:{
+> >       status:0|1 0成功，１失败
+> >   }
+> >   ```
+> >
+> > * api/getUserList
+> >
+> >   * web => server 
+> >
+> >   ```
+> >   
+> >   ```
+> >
+> >   * server =>  web
+> >
+> >   ```json
+> >   data:[
+> >       {
+> >           uId: 1,
+> >           username: 'name',
+> >           address: '赣州市兴国县'
+> >     	}
+> >     ]
+> >   ```
+> >
+> > * api/changeAddress
+> >
+> >   * web => server
+> >
+> >   ```json
+> >   data:{
+> >       address:"asd"
+> >   }
+> >   ```
+> >
+> >   * server => web
+> >
+> >   ```json
+> >   data:{
+> >       status:0|1
+> >   }
+> >   ```
+>
+> ---
+>
+> Commodity 相关操作
+>
+> > * api/getCommodityListByTypeId
+> >
+> >   * web => server
+> >
+> >   ```json
+> >   data:{
+> >       typeId:0
+> >   }
+> >   ```
+> >
+> >   * server => web
+> >
+> >   ```json
+> >   data:{
+> >       {
+> >         "cId": 2,
+> >         "price": 28.00,
+> >         "cName": 'boo2',
+> >         "des": "如果DIV定义的宽度，当文本超过这个宽度时就会自动换行。自动换行"
+> >         "image": "http://img60.ddimg.cn/digital/product/1/58/1901100158_ii_cover.jpg?version=e5e16431-65df-43f8-869e-cea84c738a74"
+> >       },
+> >       {
+> >         "cId": 4,
+> >         "price": 38.00,
+> >         "cName": 'boo2',
+> >         "des": "如果DIV定义的宽度，当文本超过这个宽度时就会自动换行。自动换行"
+> >         "image": "http://img60.ddimg.cn/digital/product/1/58/1901100158_ii_cover.jpg?version=e5e16431-65df-43f8-869e-cea84c738a74"
+> >       }
+> >   }
+> >   ```
+>
+> ---
+>
+> Order 相关操作
+>
+> > * api/getOrderList　　获取个人订单列表
+> >
+> >   * web=>server
+> >
+> >   ```
+> >   
+> >   ```
+> >
+> >   * server => web 
+> >
+> >   ```
+> >   data:[{
+> >       "oId": 1,
+> >       "cId": 1,
+> >       "price": 20.00,
+> >       "sum": 2,
+> >       "status": 0,
+> >       "cName": 'titlefgfkhgjfgjhl',    		 
+> >     "image":"http://img60.ddimg.cn/digital/product/1/58/1901100158_ii_cover.jpg?version=e5e16431-65df-43f8-869e-cea84c738a74"
+> >   }]
+> >   ```
+> >
+> > * api/addOrder   添加订单
+> >
+> >   * web => server
+> >
+> >   ```
+> >   data:[
+> >   	{
+> >   	  "cId": 1,
+> >   	  "cName": "titlefgfkhgjfgjhl",
+> >   	  "checked": true,
+> >    　　　"image":"http://img60.ddimg.cn/digital/product/1/58/1901100158_ii_cover.jpg?version=e5e16431-65df-43f8-869e-cea84c738a74"
+> >   	　 "num": 1
+> >   	   "price": 20
+> >   	 }
+> >   ]
+> >   ```
+> >
+> >   * server => web
+> >
+> >   ```
+> >   data:{
+> >       status:0|1
+> >   }
+> >   ```
+> >
+> > * api/OrderComplete
+> >
+> >   * web => server
+> >
+> >   ```
+> >   data:{
+> >       "oId":1
+> >   }
+> >   ```
+> >
+> >   * server => web 
+> >
+> >   ```
+> >   data:{
+> >       "status":1
+> >   }
+> >   ```
+> >
+> > * api/getAllOrderList 
+> >
+> >   * web => server 
+> >
+> >   ```json
+> >   data:{
+> >       "status":0|1|2  未完成，已完成，全部
+> >   }
+> >   ```
+> >
+> >   * server => web 
+> >
+> >   ```json
+> >   data:[{
+> >   	"oId": 1,
+> >       "uId": 1,
+> >       "cId": 1,
+> >       "price": 20.00,
+> >       "num": 2,
+> >       "title": 'titlefgfkhgjfgjhl',	　　　	　　      		 	      	 	  
+> >             		"images":“http://img60.ddimg.cn/digital/product/1/58/1901100158_ii_cover.jpg?version=e5e16431-65df-43f8-869e-cea84c738a74”
+> >   }]
+> >   ```
+> >
+>
+> ---
+>
+> shoppingCart  相关操作
+>
+> > * api/updateOrderList   更新购物车
+> >
+> >   * web => server 
+> >
+> >   ```
+> >   data:{
+> >       list:[
+> >           {
+> >              "cId":1,
+> >              "price":20,
+> >              "cName":"abc",
+> >              "image":url,
+> >              "num":num,
+> >              "checked":checked
+> >           }
+> >       ]
+> >   }
+> >   ```
+> >
+> >   * server => web
+> >
+> >   ```
+> >   data:{
+> >       status:0|1
+> >   }
+> >   ```
+> >
+> > * api/addShoppingCart  添加购物车
+> >
+> >   * web => server
+> >
+> >     ```
+> >     data:{
+> >         "cId":1
+> >     }
+> >     ```
+> >
+> >   * server => web 
+> >
+> >   ```
+> >   data:{
+> >       status:0|1
+> >   }
+> >   ```
+> >
+> > * getShoppingCart  获取购物车
+> >
+> >   * web => server 
+> >
+> >   ```
+> >   
+> >   ```
+> >
+> >   * server => web
+> >
+> >   ```json
+> >   data:{ 
+> >     "cId":1,
+> >     "price":20.00,
+> >     "cName":"title",
+> >     "image":“http://img60.ddimg.cn/digital/product/1/58/1901100158_ii_cover.jpg?version=e5e16431-65df-43f8-869e-cea84c738a74”
+> >   }
+> >   ```
+> >
 
-  > 根据书籍类型 返回书籍列表
-
-  * 请求数据:web => server
-
-    ```data:{
-    data:{
-        "typeId":id
-    }
-    ```
-
-  * 返回数据
-
-    ``` 
-    data:[
-        {
-          "bookId":1,
-          "price":20,
-          "name":name,
-          "desc":desc
-          "imgUrl":url
-        },
-        {
-        	"bookId":id,
-          	"title":title,
-          	"content":content，
-            "imgUrl":url
-        }
-    ]
-    ```
-
-* api/register  
-
-  > 注册账号
-
-  * web => server
-
-  ``` 
-  data:{
-      "username":6130116240,
-      "password":123456
-  }
-  ```
-
-  * server => web
-
-  > 返回状态  status:0|1  0表示不成功，1表示成功
-
-  ```
-  data:{
-      "status":1
-  }
-  ```
-
-* api/login
-
-  > 账号登陆
-
-  * web => server
-
-  ```
-  data:{
-  	"username":6130116240,
-      "password":123456
-  }
-  ```
-
-  * server => web
-
-  > 返回状态 status:0|1 0表示成功,1表示失败
-
-  ```
-  data:{
-      "status":1,
-      cookie:{}
-  }
-  ```
-
-* api/getShoppingCart
-
-  > 获取购物车
-
-  * web => server 
-
-  ```  
-  Cookies
-  ```
-
-  * server => web
-
-  ``` 
-  data:{
-      [
-          {
-              "cId":1,
-              "num":2,
-              price:20
-              "cName":"name",
-              "image":"url"
-          },
-          {
-              "cId":2,
-              "num":2,
-              price:30,
-              "cName":"name",
-              "image":"url"
-          }
-      ]
-  }
-  ```
-
-* api/getOrders
-
-  > 获取我的订单
-
-  * web => server 
-
-  ```
-  Cookies
-  ```
-
-  * server => web
-
-  ```
-  data:[
-  	{	
-  		"oId":1,
-      	"cId":1,
-      	"price":20.00,
-      	"num":2,
-      	"cName":"name",
-      	"iamge":"url"
-  	},
-  	{
-  		"oId":2,
-      	"cId":2,
-      	"price":20.00,
-      	"num":2,
-      	"cName":"name",
-      	"iamge":"url"
-  	}
-  ]
-  ```
-
-* api/getAddress
-
-  > 获取地址
-
-  * server => web 
-
-  ```
-  data:{
-      "address":"江西赣州"
-  }
-  ```
-
-* api/changeAddress
-
-  > 修改地址
-
-  * web => server 
-
-  ```
-  data:{
-      address:"asd"
-  }
-  ```
-
-  * server => web   0修改失败｜１xiuga
-
-  ```
-  data:{
-      status:0|1
-  }
-  ```
 
 
 
@@ -459,22 +565,29 @@
 * commodityType_dao
 
   * getTypeList   ： ***获取所有书籍类型***
+
 * commodity_dao
 
   * getBookListByTypeId : ***根据书籍Id获取书籍列表***
   * addBook  ***添加书籍***
+
 * dao/Orders_dao
 
   * getOrderListByUid  ***根据用户id获取订单列表***
   * getOrderListByStatus  ***根据status获取订单列表***
   * completeOrderbyId  ***完成对应的id订单***
   * addOrders  ***添加订单***
+
 * User_dao
+
   * addUser ***添加用户***
   * changeAddress *** 修改用户收货嫡地址***
   * getAddress   ***获取用户收货地址***
   * getUserList ***获取用户列表***
 
-* ShoppingCart
+  * judgeExistByUserName   　***根据用户名判断是否存在***
+  * 
+
+* ShoppingCart_dap
   * getCartListByUId  ***根据用户id获取购物车列表***
   * addCartList   保存购物车

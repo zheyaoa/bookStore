@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <cart-header></cart-header>
-        <cart-list :list=list  ></cart-list>
+        <cart-list :list=list  @updateList="handleUpdateList"></cart-list>
     </div>
 </template>
 <script>
@@ -18,13 +18,17 @@ export default {
             list:[]
         }
     },
+    watch:{
+        list(){
+            this.updateShoppingCartList();
+        }
+    },
     methods:{
         getShoppingCartList(){
             this.axios.post('https://www.easy-mock.com/mock/5c03b2ae125d962d127404d1/getShoppingCart')
             .then(rs => {
-                console.log(rs.data.list)
                 let list = [];
-                rs.data.list.forEach(item => {
+                rs.data.forEach(item => {
                     item.num = 1;
                     item.checked = false;
                     list.push(item);
@@ -32,16 +36,19 @@ export default {
                 this.list = list;
             })
         },
-        updateList(){
-
+        updateShoppingCartList(){
+            let data = JSON.stringify({list:this.list});
+            this.axios.post('api/updateShoppingCart',data);
+        },
+        handleUpdateList(list){
+            this.list = list;
         }
     },
     activated(){
-        this.updateList();
+        this.getShoppingCartList();
     },
     deactivated(){
-            let data = JSON.stringify({list:this.list});
-        this.axios.post('api/updateShoppingCart',data);
+        this.updateShoppingCartList()
     }
 }
 </script>

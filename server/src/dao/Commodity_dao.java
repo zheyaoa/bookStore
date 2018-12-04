@@ -26,7 +26,7 @@ public class Commodity_dao {
             String sql = "select * from commodity while typeId=?";
             ps = conn.prepareStatement(sql);
             ps.setInt(1,typeId);
-            ResultSet rs =  ps.executeQuery(sql);
+            ResultSet rs =  ps.executeQuery();
             while (rs.next()){
                  Commodity_bean commoditybean = new Commodity_bean();
                  commoditybean.setcId(rs.getInt("cId"));

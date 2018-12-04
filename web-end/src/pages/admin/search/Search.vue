@@ -20,7 +20,7 @@ export default {
         }
     },
     mounted(){
-        this.axios.post('https://www.easy-mock.com/mock/5c03b2ae125d962d127404d1/getUserMessage')
+        this.axios.post('https://www.easy-mock.com/mock/5c03b2ae125d962d127404d1/getUserList')
         .then(rs => {
             this.list = rs.data.list
         })

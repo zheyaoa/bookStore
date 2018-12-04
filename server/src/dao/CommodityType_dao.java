@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class CommodityType_dao {
+
     public ArrayList getTypeList() throws Exception{
         Connection conn =  null;
         ArrayList<CommodityType_bean> commodityTypeList = new ArrayList();
