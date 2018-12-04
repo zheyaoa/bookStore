@@ -93,7 +93,7 @@
 > >
 > >   ```
 > >   data:{
-> >       status:0|1 0成功，１失败
+> >       status:0|1 1成功，0失败
 > >   }
 > >   ```
 > >
@@ -272,12 +272,13 @@
 > >
 > >   ```json
 > >   data:[{
-> >   	"oId": 1,
+> >       "oId": 1,
 > >       "uId": 1,
 > >       "cId": 1,
 > >       "price": 20.00,
 > >       "num": 2,
-> >       "title": 'titlefgfkhgjfgjhl',	　　　	　　      		 	      	 	  
+> >       "status":0,
+> >       "cName": 'titlefgfkhgjfgjhl',	　　　	　　      		 	      	 	  
 > >             		"images":“http://img60.ddimg.cn/digital/product/1/58/1901100158_ii_cover.jpg?version=e5e16431-65df-43f8-869e-cea84c738a74”
 > >   }]
 > >   ```
@@ -372,7 +373,7 @@
     </tr>
     <tr>
         <th>uId</th>
-        <th>Integer</th>
+        <th>String</th>
         <th>主键</th>
         <th>用户id</th>
     </tr>
@@ -395,6 +396,7 @@
         <th>地址</th>
     </tr>
 </table>	
+
 
 
 
@@ -570,6 +572,9 @@
 
   * getBookListByTypeId : ***根据书籍Id获取书籍列表***
   * addBook  ***添加书籍***
+  * getImageByCId   ***通过cId获取image
+  * getCNameByCId
+  * getPriceByCId
 
 * dao/Orders_dao
 
@@ -584,10 +589,13 @@
   * changeAddress *** 修改用户收货嫡地址***
   * getAddress   ***获取用户收货地址***
   * getUserList ***获取用户列表***
-
   * judgeExistByUserName   　***根据用户名判断是否存在***
-  * 
+  * getUIdbyUserName
+  * getPasswordbyUserName
+  * login
 
 * ShoppingCart_dap
   * getCartListByUId  ***根据用户id获取购物车列表***
   * addCartList   保存购物车
+  * updateCartListByUId
+  * 
