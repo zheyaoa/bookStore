@@ -65,7 +65,7 @@ export default {
             data.typeId = data.value;
             delete data.value;
             data = JSON.stringify(data);
-            this.axios.post('./api/addBook',data)
+            this.axios.post('http:localhost:8080/api/addBook',data)
             .then(rs => {
                 this.$message({
                     type:'success',

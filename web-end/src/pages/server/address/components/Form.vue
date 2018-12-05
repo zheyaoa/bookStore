@@ -26,11 +26,11 @@ export default {
         },
         changeAddress(){
             let data = JSON.stringify(this.addressForm);
-            this.axios.post('api/changeAddress',data)
+            this.axios.post('http://localhost:8080/api/changeAddress',data)
             .then(rs =>{
                 this.$message({
-                    type:success,
-                    title:修改成功
+                    "type":"success",
+                    "title":"修改成功"
                 })
             })
         }

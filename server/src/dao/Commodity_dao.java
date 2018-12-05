@@ -23,19 +23,19 @@ public class Commodity_dao {
 
     public ArrayList getBookListByTypeId(Integer typeId) throws Exception{
         try {
-            String sql = "select * from commodity while typeId=?";
+            String sql = "select * from commodity where typeId= ? ";
             ps = conn.prepareStatement(sql);
             ps.setInt(1,typeId);
             ResultSet rs =  ps.executeQuery();
             while (rs.next()){
-                 Commodity_bean commoditybean = new Commodity_bean();
-                 commoditybean.setcId(rs.getInt("cId"));
-                 commoditybean.setTypeId(rs.getInt("typeId"));
-                 commoditybean.setPrice(rs.getFloat("price"));
-                 commoditybean.setcName(rs.getString("cName"));
-                 commoditybean.setDes(rs.getString("des"));
-                 commoditybean.setImage(rs.getString("image"));
-                 commodityList.add(commoditybean);
+                Commodity_bean commoditybean = new Commodity_bean();
+                commoditybean.setcId(rs.getInt("cId"));
+                commoditybean.setTypeId(rs.getInt("typeId"));
+                commoditybean.setPrice(rs.getFloat("price"));
+                commoditybean.setcName(rs.getString("cName"));
+                commoditybean.setDes(rs.getString("des"));
+                commoditybean.setImage(rs.getString("image"));
+                commodityList.add(commoditybean);
             }
             rs.close();
             ps.close();
@@ -56,13 +56,60 @@ public class Commodity_dao {
             ps.setFloat(3, commoditybean.getPrice());
             ps.setString(4, commoditybean.getDes());
             ps.setString(5, commoditybean.getImage());
-            ps.executeUpdate(sql);
+            ps.executeUpdate();
             ps.close();
         }catch (SQLException e){
             e.printStackTrace();
         }finally {
-            conn.close();
-            conn = null;
         }
     }
+
+    public String getCNameByCId(Integer cId) throws Exception{
+        String cName = null;
+        try{
+            String sql = "select cName from commodity where cId =?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1,cId);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            cName = rs.getString("cName");
+            ps.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return cName;
+    }
+    public Float getPriceByCId(Integer cId) throws Exception{
+        Float price = null;
+        try{
+            String sql = "select price from commodity where cId =?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1,cId);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            price = rs.getFloat("price");
+            ps.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+        }
+        return price;
+    }
+    public String getImageByCId(Integer cId) throws Exception{
+        String image = null;
+        try{
+            String sql = "select image from commodity where cId =?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1,cId);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            image = rs.getString("image");
+            ps.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+        }
+        return image;
+    }
+
 }

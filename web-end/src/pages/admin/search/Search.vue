@@ -20,9 +20,9 @@ export default {
         }
     },
     mounted(){
-        this.axios.post('https://www.easy-mock.com/mock/5c03b2ae125d962d127404d1/getUserList')
+        this.axios.post('https://localhost/api/getUserOrderList')
         .then(rs => {
-            this.list = rs.data.list
+            this.list = rs.data
         })
     }
 }

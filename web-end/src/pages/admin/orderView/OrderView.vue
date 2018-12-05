@@ -27,9 +27,9 @@ export default {
     methods:{
         getOrderList(id){
             let data = JSON.stringify({"status":id});
-            this.axios.post('https://www.easy-mock.com/mock/5c03b2ae125d962d127404d1/getAllOrderList',data)
+            this.axios.post('http://localhost:8080/api/getAllOrderList',data)
             .then(rs => {
-                this.list = rs.data.list;
+                this.list = rs.data;
             })
         }
     }

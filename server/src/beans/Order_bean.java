@@ -1,12 +1,15 @@
 package beans;
 
+import dao.Commodity_dao;
+
+import java.sql.SQLException;
+
 public class Order_bean {
     private Integer oId;
     private Integer uId;
     private Integer cId;
     private Integer num;
     private Integer status;
-    private Float price;
 
     public Integer getoId() {
         return oId;
@@ -48,11 +51,35 @@ public class Order_bean {
         this.status = status;
     }
 
-    public Float getPrice() {
+    public Float getPrice()throws Exception{
+        Float price = null;
+        try {
+            Commodity_dao commodity_dao = new Commodity_dao();
+            price = commodity_dao.getPriceByCId(this.cId);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return price;
     }
 
-    public void setPrice(Float price) {
-        this.price = price;
+    public String getCName() throws Exception{
+        String cName = null;
+        try {
+            Commodity_dao commodity_dao = new Commodity_dao();
+            cName = commodity_dao.getCNameByCId(this.cId);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return cName;
+    }
+    public String getImage() throws Exception{
+        String image = null;
+        try {
+            Commodity_dao commodity_dao = new Commodity_dao();
+            image = commodity_dao.getImageByCId(this.cId);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return image;
     }
 }

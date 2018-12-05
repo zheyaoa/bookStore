@@ -3,14 +3,12 @@ package beans;
 public class ShoppingCart_bean {
     private Integer uId;
     private Integer cId;
-    private Integer num;
-    private Float price;
 
-    public ShoppingCart_bean(Integer uId, Integer cId, Integer num, Float price) {
+
+    public ShoppingCart_bean(Integer uId, Integer cId) {
         this.uId = uId;
         this.cId = cId;
-        this.num = num;
-        this.price = price;
+
     }
 
     public Integer getuId() {
@@ -21,11 +19,11 @@ public class ShoppingCart_bean {
         return cId;
     }
 
-    public Integer getNum() {
-        return num;
+    public void setuId(Integer uId) {
+        this.uId = uId;
     }
 
-    public Float getPrice() {
-        return price;
+    public void setcId(Integer cId) {
+        this.cId = cId;
     }
 }

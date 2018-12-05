@@ -30,7 +30,7 @@ export default {
     data(){
         return {
             loginForm:{
-                username:'',
+                userName:'',
                 password:''
             }
         }
@@ -41,13 +41,15 @@ export default {
         },
         handleLogin(){
             let data = JSON.stringify(this.loginForm);
-            this.axios.post('https://www.easy-mock.com/mock/5c03b2ae125d962d127404d1/login',data)
+            this.axios.post('http://localhost:8080/api/login',data)
             .then(rs => {
-                this.$message({
-                    "type":"success",
-                    "message":'登入成功'
-                })
-                this.$router.push('./')
+                if(rs.data.status == 1){
+                    this.$message({
+                        "type":"success",
+                        "message":'登入成功'
+                    })
+                    this.$router.push('./')
+                }
             })
         }
     }

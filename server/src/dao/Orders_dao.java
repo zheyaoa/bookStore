@@ -23,10 +23,10 @@ public class Orders_dao {
 
     public ArrayList getOrderListByUid(Integer uId) throws Exception{
         try {
-            String sql = "select * from orders while uId=?";
+            String sql = "select * from orders where uId=?";
             ps = conn.prepareStatement(sql);
             ps.setInt(1,uId);
-            ResultSet rs =  ps.executeQuery(sql);
+            ResultSet rs =  ps.executeQuery();
             HandleResultSet(rs);
             rs.close();
             ps.close();
@@ -46,10 +46,11 @@ public class Orders_dao {
                 getOrderListByStatus(0);
                 getOrderListByStatus(1);
             }else {
-                String sql = "select * from orders while status=?";
+                String sql = "select * from orders where status=?";
                 ps = conn.prepareStatement(sql);
                 ps.setInt(1,statusCode);
-                ResultSet rs = ps.executeQuery(sql);
+                ResultSet rs = ps.executeQuery();
+                System.out.printf("长度为"+rs.getRow());
                 HandleResultSet(rs);
                 rs.close();
                 ps.close();
@@ -57,11 +58,8 @@ public class Orders_dao {
         }catch (SQLException e){
             e.printStackTrace();
         }finally {
-            conn.close();
-            conn = null;
         }
         return orderBeanList;
-
     }
     public void HandleResultSet(ResultSet rs) throws Exception{
         try {
@@ -71,7 +69,6 @@ public class Orders_dao {
                 orderBean.setNum(rs.getInt("num"));
                 orderBean.setoId(rs.getInt("oId"));
                 orderBean.setuId(rs.getInt("uId"));
-                orderBean.setPrice(rs.getFloat("price"));
                 orderBean.setStatus(rs.getInt("status"));
                 orderBeanList.add(orderBean);
             }
@@ -82,7 +79,7 @@ public class Orders_dao {
 
     public void addOrders(Order_bean [] orders) throws Exception{
         try {
-            String sql = "insert into orders(uId,cId,num,status,price)values";
+            String sql = "insert into orders(uId,cId,num,status)values";
             for (Order_bean order:orders) {
                 sql += getOrderSql(order);
             }
@@ -102,18 +99,18 @@ public class Orders_dao {
                 +order.getuId()+","
                 +order.getcId()+","
                 +order.getNum()+","
-                +order.getStatus()+","
-                +order.getPrice()+","
+                +order.getStatus()
                 +")";
         return sql;
     }
 
     public void completeOrderbyId(Integer oId) throws Exception{
         try {
-            String sql = "update orders set status=1 while oId=?";
+            System.out.print(oId);
+            String sql = "update orders set status=1 where oId=?";
             ps = conn.prepareStatement(sql);
             ps.setInt(1,oId);
-            ps.executeUpdate(sql);
+            ps.executeUpdate();
             ps.close();
         }catch (SQLException e){
             e.printStackTrace();

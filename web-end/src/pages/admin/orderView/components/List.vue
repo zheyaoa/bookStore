@@ -2,7 +2,7 @@
     <div id="list">
         <div class="item" v-for="item in  list" :key="item.oId">
             <div class="img">
-                <img :src="item.imgUrl">
+                <img :src="item.image">
             </div>
             <div class="detail">
                 <h5 class="title">{{item.title}}</h5>

@@ -21,5 +21,12 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="servlet-api" level="project" />
     <orderEntry type="library" name="mysql-connector-java-5.1.44-bin" level="project" />
+    <orderEntry type="library" name="commons-beanutils-1.7.0" level="project" />
+    <orderEntry type="library" name="commons-collections-3.2" level="project" />
+    <orderEntry type="library" name="commons-lang-2.4" level="project" />
+    <orderEntry type="library" name="commons-logging-1.1" level="project" />
+    <orderEntry type="library" name="ezmorph-1.0.4" level="project" />
+    <orderEntry type="library" name="jdom" level="project" />
+    <orderEntry type="library" name="json-lib-2.2.2-jdk15" level="project" />
   </component>
 </module>

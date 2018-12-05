@@ -69,7 +69,7 @@ export default {
                 }
             }
             this.$emit('updateList',list);
-            this.axios.post('api/addOrders',checkList)
+            this.axios.post('http://localhost:8080/api/addOrders',checkList)
             .then(rs => {
                 this.$message({
                     'type':success,

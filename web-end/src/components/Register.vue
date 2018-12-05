@@ -27,7 +27,7 @@ export default {
     data(){
         return {
             registerForm:{
-                username:'',
+                userName:'',
                 password:''
             }
         }
@@ -38,7 +38,7 @@ export default {
         },
         handleRegister(){
             let data = JSON.stringify(this.registerForm)
-            this.axios.post('api/register',data)
+            this.axios.post('http://localhost:8080/api/register',data)
             .then(rs => {
                 if(rs.status == 1){
                     this.$message({
@@ -48,7 +48,7 @@ export default {
                     this.$router.push('./login')
                 }else{
                     this.$message({
-                        message:"你已经注册",
+                        message:"注册失败",
                         type:"warning"
                     })
                 }

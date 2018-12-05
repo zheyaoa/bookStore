@@ -22,18 +22,17 @@ public class ShoppingCart_dao {
     public ArrayList getCartListByUId(Integer uId) throws  Exception{
         ArrayList<ShoppingCart_bean> shoppingCartList = new ArrayList<>();
         try{
-            String sql ="select * shoppingCart where uId=?";
+            String sql ="select * from shoppingCart where uId=?";
             ps = conn.prepareStatement(sql);
             ps.setInt(1,uId);
             ResultSet rs =  ps.executeQuery();
             while (rs.next()){
                 Integer userId = rs.getInt("uId");
                 Integer cId = rs.getInt("cId");
-                Integer num = rs.getInt("num");
-                Float price = rs.getFloat("price");
-                ShoppingCart_bean shoppingCart = new ShoppingCart_bean(userId,cId,num,price);
+                ShoppingCart_bean shoppingCart = new ShoppingCart_bean(userId,cId);
                 shoppingCartList.add(shoppingCart);
             }
+
             ps.close();
             rs.close();
         }catch (SQLException e){
@@ -45,13 +44,14 @@ public class ShoppingCart_dao {
         return shoppingCartList;
     }
     public void addCartList(ShoppingCart_bean shoppingCart) throws Exception{
+        if(judgeExistByUIdAndCId(shoppingCart)){
+            return;
+        }
         try {
-            String sql = "insert into shoppingCart(uId,cId,num,price) values(?,?,?,?)";
+            String sql = "insert into shoppingCart(uId,cId) values(?,?)";
             ps = conn.prepareStatement(sql);
             ps.setInt(1,shoppingCart.getuId());
             ps.setInt(2,shoppingCart.getcId());
-            ps.setInt(3,shoppingCart.getNum());
-            ps.setFloat(4,shoppingCart.getPrice());
             ps.executeUpdate();
             ps.close();
         }catch (SQLException e){
@@ -59,6 +59,41 @@ public class ShoppingCart_dao {
         }finally {
             conn.close();
             conn = null;
+        }
+    }
+    private Boolean judgeExistByUIdAndCId(ShoppingCart_bean shoppingCart){
+        Boolean isExist = false;
+        try {
+            String sql = "select * from shoppingCart where uId=? and cId = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1,shoppingCart.getuId());
+            ps.setInt(2,shoppingCart.getcId());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                isExist = true;
+            }
+            rs.close();
+            ps.close();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return isExist;
+    }
+    //先删除uId下的所有列表,再进行添加
+    public void updateCartListByUId(Integer uId,ShoppingCart_bean[] cartList) throws  Exception{
+        try{
+            String sql = "delete from shoppingCart where uId = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1,uId);
+            ps.executeUpdate();
+            ps.close();
+            for (ShoppingCart_bean cart:cartList) {
+                addCartList(cart);
+            }
+        }catch (SQLException e){
+            conn.rollback();
+        }finally {
         }
     }
 }

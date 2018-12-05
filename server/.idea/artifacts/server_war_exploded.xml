@@ -7,6 +7,17 @@
         <element id="directory" name="classes">
           <element id="module-output" name="server" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="mysql-connector-java-5.1.44-bin" />
+          <element id="library" level="application" name="json-lib-2.4-jdk15" />
+          <element id="library" level="project" name="commons-beanutils-1.7.0" />
+          <element id="library" level="project" name="commons-collections-3.2" />
+          <element id="library" level="project" name="commons-lang-2.4" />
+          <element id="library" level="project" name="commons-logging-1.1" />
+          <element id="library" level="project" name="ezmorph-1.0.4" />
+          <element id="library" level="project" name="jdom" />
+          <element id="library" level="project" name="json-lib-2.2.2-jdk15" />
+        </element>
       </element>
     </root>
   </artifact>

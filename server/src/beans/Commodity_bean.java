@@ -5,6 +5,8 @@ public class Commodity_bean {
     Integer typeId;
     String cName;
     Float price;
+
+
     String des;
     String image;
 

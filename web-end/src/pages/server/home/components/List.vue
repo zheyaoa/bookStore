@@ -29,7 +29,7 @@ export default {
     methods:{
         addShoppingCart(cId){
         let data = JSON.stringify({cId});
-        this.axios.post('api/addShoppingCart',data);
+        this.axios.post('http://localhost:8080/api/addShoppingCart',data);
         this.$message({
                 message: '添加成功',
                 type: 'success'

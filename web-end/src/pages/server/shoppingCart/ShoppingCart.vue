@@ -25,8 +25,9 @@ export default {
     },
     methods:{
         getShoppingCartList(){
-            this.axios.post('https://www.easy-mock.com/mock/5c03b2ae125d962d127404d1/getShoppingCart')
+            this.axios.post('http://localhost:8080/api/getShoppingCart')
             .then(rs => {
+                console.log(rs);
                 let list = [];
                 rs.data.forEach(item => {
                     item.num = 1;
@@ -38,7 +39,7 @@ export default {
         },
         updateShoppingCartList(){
             let data = JSON.stringify({list:this.list});
-            this.axios.post('api/updateShoppingCart',data);
+            this.axios.post('http://localhost:8080/api/updateShoppingCartList',data);
         },
         handleUpdateList(list){
             this.list = list;

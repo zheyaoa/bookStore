@@ -19,11 +19,16 @@ public class User_dao {
             e.printStackTrace();
         }
     }
-    public void  addUser(User_bean user) throws Exception{
+    public Boolean addUser(User_bean user) throws Exception{
+        String userName = user.getUserName();
+        Boolean isExist = judgeExistByUserName(userName);
+        if (isExist){
+            return false;
+        }
         try {
             String sql = "insert into user(username,password) values(?,?)";
             ps = conn.prepareStatement(sql);
-            ps.setInt(1,user.getUsername());
+            ps.setString(1,user.getUserName());
             ps.setString(2,user.getPassword());
             ps.executeUpdate();
             ps.close();
@@ -33,6 +38,7 @@ public class User_dao {
             conn.close();
             conn = null;
         }
+        return  true;
     }
 
     public void changeAddress(Integer uId,String address)throws  Exception{
@@ -59,7 +65,7 @@ public class User_dao {
             ResultSet rs = stat.executeQuery(sql);
             while (rs.next()){
                 Integer uId = rs.getInt("uId");
-                Integer username = rs.getInt("userName");
+                String username = rs.getString("userName");
                 String password = rs.getString("password");
                 String address = rs.getString("address");
                 userList.add(new User_bean(uId,username,password,address));
@@ -73,5 +79,71 @@ public class User_dao {
             conn = null;
         }
         return userList;
+    }
+
+    public Boolean judgeExistByUserName(String userName)throws Exception{
+        Boolean isExist = false;
+        try {
+            String sql = "select * from user where userName = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,userName);
+            ResultSet rs = ps.executeQuery();
+            //如果查询出结果
+            if(rs.next()){
+                isExist = true;
+            }
+            rs.close();
+            ps.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+        }
+        return isExist;
+    }
+    public Integer getUIdbyUserName(String userName)throws Exception{
+        Integer uId = null;
+        try{
+            String sql = "select uId from user where userName=?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,userName);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            uId = rs.getInt("uId");
+            ps.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            conn.close();
+            conn = null;
+        }
+        return uId;
+    }
+    private String getPasswordbyUserName(String userName)throws Exception{
+        String password = null;
+        System.out.printf(userName);
+        try{
+            String sql = "select password from user where username=?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,userName);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                password = rs.getString("password");
+            }
+            System.out.printf(password);
+            ps.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return password;
+    }
+    public Integer login(String userName,String password)throws Exception{
+        Integer uId = null;
+        if(!judgeExistByUserName(userName)){
+            return uId;
+        }
+        if (password.equals(getPasswordbyUserName(userName))){
+            uId = getUIdbyUserName(userName);
+        }
+        return uId;
     }
 }

@@ -26,18 +26,15 @@ export default {
         }
     },
     mounted(){
-        this.axios.post('https://www.easy-mock.com/mock/5c03b2ae125d962d127404d1/getCommodityListByTypeId',{"typeId":0})
-        .then(rs => {
-            this.list = rs.data.list
-        })
+        this.getCommodityListByTypeId(0);
     },
     methods:{
         getCommodityListByTypeId(typeId){
             let data = {typeId};
             data = JSON.stringify(data);
-            this.axios.post('https://www.easy-mock.com/mock/5c03b2ae125d962d127404d1/getCommodityListByTypeId',data)
+            this.axios.post('http://localhost:8080/api/getCommodityListByTypeId',data)
             .then(rs => {
-                this.list = rs.data.list
+                this.list = rs.data
             })
         }
     }
