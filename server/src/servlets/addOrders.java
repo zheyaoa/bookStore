@@ -27,7 +27,7 @@ public class addOrders extends HttpServlet {
 
             ArrayList<Order_bean> orderList = null;
             Orders_dao orders_dao = new Orders_dao();
-            JSONArray jsonArr = JsonReader.receivePostToJsonArray(request);
+            JSONArray jsonArr = JsonReader.receivePost(request).getJSONArray("list");
             Integer uId = (Integer)session.getAttribute("uId");
             JSONObject data = new JSONObject();
             if(uId!=null){

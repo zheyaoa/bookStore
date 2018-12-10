@@ -31,10 +31,12 @@ public class GetUserList extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.printf("getUserList");
         JSONArray data = new JSONArray();
         JSONObject rs = new JSONObject();
         for (User_bean user : userList){
-            rs.put("userName",user.getUserName());
+            rs.put("uId",user.getuId());
+            rs.put("username",user.getUserName());
             rs.put("password",user.getPassword());
             rs.put("address",user.getAddress());
             data.add(rs);

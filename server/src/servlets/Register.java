@@ -27,8 +27,10 @@ public class Register extends HttpServlet {
             JSONObject data = new JSONObject();
 
             JSONObject reqJson =  JsonReader.receivePost(request);
-            String userName = reqJson.getString("userName");
+            String userName = reqJson.getString("username");
             String password = reqJson.getString("password");
+            System.out.printf(userName);
+            System.out.printf(password);
             User_dao user_dao = new User_dao();
             User_bean user = new User_bean();
             user.setUserName(userName);

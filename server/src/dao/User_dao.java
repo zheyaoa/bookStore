@@ -84,14 +84,16 @@ public class User_dao {
     public Boolean judgeExistByUserName(String userName)throws Exception{
         Boolean isExist = false;
         try {
-            String sql = "select * from user where userName = ?";
+            String sql = "select * from user where username = ?";
             ps = conn.prepareStatement(sql);
             ps.setString(1,userName);
             ResultSet rs = ps.executeQuery();
             //如果查询出结果
             if(rs.next()){
                 isExist = true;
+                System.out.println("userName is"+rs.getString("username"));
             }
+            System.out.print(rs);
             rs.close();
             ps.close();
         }catch (SQLException e){

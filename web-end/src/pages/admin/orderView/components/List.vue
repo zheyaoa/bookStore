@@ -37,7 +37,7 @@ export default {
     methods:{
         handleOrderComplete(oId){
             let data = JSON.stringify({oId});
-            this.axios.post('api/orderComplete',data)
+            this.axios.post('http://localhost:8080/api/orderComplete',data)
             .then(rs => {
                 this.$message({
                     type:'success',

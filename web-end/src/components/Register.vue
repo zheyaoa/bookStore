@@ -40,7 +40,7 @@ export default {
             let data = JSON.stringify(this.registerForm)
             this.axios.post('http://localhost:8080/api/register',data)
             .then(rs => {
-                if(rs.status == 1){
+                if(rs.data.status == 1){
                     this.$message({
                         message:"注册成功",
                         type:"success"

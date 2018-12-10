@@ -158,7 +158,7 @@
 >
 > Commodity 相关操作
 >
-> > * api/getCommodityListByTypeId
+> > * api/getCommodityListByTypeId　　　
 > >
 > >   * web => server
 > >

@@ -69,10 +69,13 @@ export default {
                 }
             }
             this.$emit('updateList',list);
-            this.axios.post('http://localhost:8080/api/addOrders',checkList)
+            let data = {
+                'list':checkList
+            };
+            this.axios.post('http://localhost:8080/api/addOrders',JSON.stringify(data))
             .then(rs => {
                 this.$message({
-                    'type':success,
+                    'type':'success',
                     'message':'提交成功'
                 })
                 this.$emit('update')

@@ -20,7 +20,7 @@ export default {
         }
     },
     mounted(){
-        this.axios.post('https://localhost/api/getUserOrderList')
+        this.axios.post('http://localhost:8080/api/getUserList')
         .then(rs => {
             this.list = rs.data
         })

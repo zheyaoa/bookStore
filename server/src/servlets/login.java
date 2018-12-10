@@ -29,7 +29,7 @@ public class login extends HttpServlet {
             String password = reqJson.getString("password");
             User_dao user_dao = new User_dao();
             Integer uId = user_dao.login(userName,password);
-            System.out.print(uId);
+
             if (uId != null){
                 session = request.getSession();
                 session.setAttribute("userName",userName);
